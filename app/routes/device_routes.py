@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from ..services.device_service import DeviceService
+from ..utils.decorators import handle_exceptions
 from ..utils.response import success_response, error_response
 
 device_bp = Blueprint('device', __name__)
@@ -8,6 +9,7 @@ device_bp = Blueprint('device', __name__)
 
 @device_bp.route('/', methods=['POST'])
 @jwt_required()  # 使用 JWT 进行保护
+@handle_exceptions()
 def add_new_device():
     data = request.get_json()
     if not data:

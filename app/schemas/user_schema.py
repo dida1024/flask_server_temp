@@ -2,8 +2,10 @@
 
 from marshmallow import Schema, fields, validate
 
+from app.schemas.base import BaseSchema
 
-class UserRegisterSchema(Schema):
+
+class UserRegisterSchema(BaseSchema):
     username = fields.Str(
         required=True,
         validate=validate.Length(min=1),
